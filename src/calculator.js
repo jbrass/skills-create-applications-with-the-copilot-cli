@@ -40,9 +40,17 @@ function squareRoot(n) {
   return Math.sqrt(n);
 }
 
+const UNARY_OPERATORS = new Set(["sqrt"]);
+
 function calculate(left, operator, right) {
-  if (Number.isNaN(left) || Number.isNaN(right)) {
-    throw new Error("number1 and number2 must both be valid numbers.");
+  if (UNARY_OPERATORS.has(operator)) {
+    if (Number.isNaN(left)) {
+      throw new Error("number must be a valid number.");
+    }
+  } else {
+    if (Number.isNaN(left) || Number.isNaN(right)) {
+      throw new Error("number1 and number2 must both be valid numbers.");
+    }
   }
 
   switch (operator) {
@@ -69,8 +77,17 @@ function calculate(left, operator, right) {
 }
 
 function runCli(argv) {
+  if (argv.length === 2 && UNARY_OPERATORS.has(argv[1])) {
+    const [leftRaw, operator] = argv;
+    const left = Number(leftRaw);
+    return calculate(left, operator);
+  }
+
   if (argv.length !== 3) {
-    throw new Error("Usage: node src/calculator.js <number1> <operator> <number2>");
+    throw new Error(
+      "Usage: node src/calculator.js <number1> <operator> <number2>\n" +
+        "       For unary operators (sqrt): node src/calculator.js <number> <operator>"
+    );
   }
 
   const [leftRaw, operator, rightRaw] = argv;
