@@ -32,7 +32,7 @@ function power(base, exponent) {
 
 function squareRoot(n) {
   if (Number.isNaN(n)) {
-    throw new Error("number1 and number2 must both be valid numbers.");
+    throw new Error("number must be a valid number.");
   }
   if (n < 0) {
     throw new Error("square root of a negative number is not allowed.");
