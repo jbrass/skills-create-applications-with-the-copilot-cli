@@ -25,13 +25,13 @@ describe("calculator operations", () => {
 
   test("calculates square root with sqrt(16) from extended operations example", () => {
     expect(squareRoot(16)).toBe(4);
-    expect(calculate(16, "sqrt", 0)).toBe(4);
-    expect(runCli(["16", "sqrt", "0"])).toBe(4);
+    expect(calculate(16, "sqrt")).toBe(4);
+    expect(runCli(["16", "sqrt"])).toBe(4);
   });
 
   test("calculates square root", () => {
     expect(squareRoot(25)).toBe(5);
-    expect(calculate(25, "sqrt", 0)).toBe(5);
+    expect(calculate(25, "sqrt")).toBe(5);
   });
 
   test("adds numbers", () => {
@@ -69,7 +69,7 @@ describe("calculator edge cases", () => {
 
   test("throws on square root of negative number", () => {
     expect(() => squareRoot(-1)).toThrow("square root of a negative number is not allowed.");
-    expect(() => calculate(-1, "sqrt", 0)).toThrow(
+    expect(() => calculate(-1, "sqrt")).toThrow(
       "square root of a negative number is not allowed."
     );
   });
@@ -100,7 +100,7 @@ describe("calculator edge cases", () => {
     expect(runCli(["20", "/", "5"])).toBe(4);
     expect(runCli(["10", "%", "3"])).toBe(1);
     expect(runCli(["2", "^", "3"])).toBe(8);
-    expect(runCli(["25", "sqrt", "0"])).toBe(5);
+    expect(runCli(["25", "sqrt"])).toBe(5);
   });
 
   test("runCli throws on wrong argument count", () => {
